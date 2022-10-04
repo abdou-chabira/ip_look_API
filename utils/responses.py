@@ -12,7 +12,7 @@ def success_response(results):
     }), StatusCode.OK
 
 
-def error_response(errors, status_code = StatusCode.BAD_REQUEST):
+def error_response(errors, status_code):
 
     return jsonify({
         "errors": errors,

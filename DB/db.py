@@ -2,7 +2,7 @@ import logging
 from contextlib import contextmanager
 from urllib.parse import urlparse
 from psycopg2 import pool
-from settings.settings import Settings
+from config.settings import Settings
 
 db_uri = urlparse(Settings.db_uri())
 reporting_db_pool = pool.ThreadedConnectionPool(1, 50, user=db_uri.username,
