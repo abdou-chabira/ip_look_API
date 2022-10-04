@@ -1,0 +1,7 @@
+Flask==
+Flask-Cors==
+Jinja2==
+psycopg2-binary==
+requests==
+urllib3==
+Werkzeug==
