@@ -5,7 +5,7 @@ from services.ip_address_service import lookup_ip_address,save_report_ip_abuse
 from utils.responses import error_response,success_response
 from config.constants import StatusCode
 from utils.api_key_validation import api_key_validation
-from app import limiter
+from utils.rate_limiter import limiter
 from db.ip_address_db import get_abuse_by_ip
 ip_address_blueprint = Blueprint('ip_address_blueprint', __name__)
 
@@ -33,7 +33,7 @@ def report_ip_abuse():
 
 
 @ip_address_blueprint.route("/ip-address/abuse/<ip_addr>",methods=["GET"])
-@limiter.limit("10 per second")
+@limiter.limit("10/second",override_defaults=False)
 def get_all_ip_abuse(ip_addr):
     category=""
     if not validate_ip_address(ip_addr):

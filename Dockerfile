@@ -16,4 +16,5 @@ ENTRYPOINT [ "python" ]
 CMD [ "wsgi.py" ]
 
 #docker build -t lookup_data_api .
+#docker network create db
 #docker run -d -p 5001:5001 --name lookup_data_api --restart=always lookup_data_api:latest

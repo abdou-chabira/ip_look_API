@@ -1,5 +1,5 @@
 from faker import Faker
-from db.ip_address_db import save_abuse_category,save_ip_address
+from db.ip_address_db import save_abuse_category
 import random
 fake=Faker()
 print(fake.ipv4_public())
@@ -13,8 +13,8 @@ def lookup_ip_address(ip_address):
             "country":location[3],
             "region":location[2],
             "city":fake.city(),
-            "lat":int(location[0]),
-            "lng":int(location[1]),
+            "lat":float(location[0]),
+            "lng":float(location[1]),
             "postalCode":fake.postcode(),
             "timezone":"-07:00"
         },
