@@ -6,6 +6,7 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgress
+      POSTGRES_DB: default_database
     ports:
       - 15432:5432/tcp
     container_name: postgres
@@ -14,7 +15,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
-      - ./sql/create_db.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./config/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
 networks:
     db:

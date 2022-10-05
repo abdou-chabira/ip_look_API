@@ -13,7 +13,7 @@ class Settings:
 
     @classmethod
     def db_uri(cls):
-        return cls.get_setting("db_uri","postgresql://postgres:postgres@127.0.0.1:15432/postgres")
+        return cls.get_setting("db_uri","postgresql://postgres:postgress@127.0.0.1:15432/postgres")
 
     @classmethod
     def web_api_key(cls):

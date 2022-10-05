@@ -23,20 +23,20 @@ def save_abuse_category(ip_address,abuseCategory):
                                     )
                                     RETURNING *
                                     """
-    row = Web_api_db.query_single(sql,ip_address,abuseCategory)
+    row = Web_api_db.query_single(sql,(ip_address,abuseCategory))
     if row: return abuse_report_row_mapper(row)
     return
 
 
 def get_abuse_by_ip(ip_address,category):
-    sql="""SELECT * FROM ip_abuse_report 
-                        WHERE ip_address=%s
-                                    """
-    if isinstance(category, int):
-        sql=sql+"""AND abuseCategory =%s"""
-
-    rows = Web_api_db.query(sql,ip_address,category)
     result=[]
+    sql="""SELECT * FROM ip_abuse_report 
+                        WHERE ip_address=%s """
+    if category!=-1:
+        sql=sql+"AND abuseCategory =%s"
+        rows = Web_api_db.query(sql,(ip_address,category))
+    else:
+        rows = Web_api_db.query(sql,(ip_address,))
     if rows: 
         for row in rows:
             result.append(abuse_report_row_mapper(row))

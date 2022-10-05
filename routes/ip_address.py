@@ -20,7 +20,7 @@ def get_ip_address_info(ip_addr):
 
 
 @ip_address_blueprint.route("/ip-address/abuse",methods=["POST"])
-@api_key_validation
+#@api_key_validation
 def report_ip_abuse():
     abuse_jdata = request.get_json()
     try:
@@ -35,12 +35,12 @@ def report_ip_abuse():
 @ip_address_blueprint.route("/ip-address/abuse/<ip_addr>",methods=["GET"])
 @limiter.limit("10/second",override_defaults=False)
 def get_all_ip_abuse(ip_addr):
-    category=""
+    category=-1
     if not validate_ip_address(ip_addr):
         return error_response({"message":"bad data"},StatusCode.BAD_REQUEST)
-    if "category" in request.args:
-        category=request.args.get("category")
-    resp=get_abuse_by_ip(ip_addr,category)
+    if "abuseCategory" in request.args:
+        category=request.args.get("abuseCategory")
+    resp=get_abuse_by_ip(ip_addr,int(category))
     return success_response(resp)
     
 

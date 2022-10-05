@@ -36,8 +36,8 @@ def lookup_ip_address(ip_address):
 
 def save_report_ip_abuse(abuse_jdata):
     abuse_report_data=[]
-    for category in abuse_jdata["abuseCategories"]:
-        ip_abuse_report_resp=save_abuse_category(abuse_jdata["ip_address"],int(category))
+    for category in abuse_jdata["data"]["abuseCategories"]:
+        ip_abuse_report_resp=save_abuse_category(abuse_jdata["data"]["ipAddress"],int(category))
         abuse_report_data.append(ip_abuse_report_resp)
     return abuse_report_data
 

@@ -4,6 +4,7 @@ from config.settings import Settings
 def api_key_validation(func):
     def inner(*args, **kwargs):
         if request.headers.has_key("Authorization"):
+            print("4444444444")
             api_key =Settings.web_api_key()
             header_api_key = request.headers.get("Authorization")[len("Basic "):]
             if api_key == header_api_key:
