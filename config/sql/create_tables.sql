@@ -1,4 +1,4 @@
-CREATE TABLE ip_abuse_report (
+CREATE TABLE  IF NOT EXISTS ip_abuse_report (
 	abuse_report_id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	ip_address varchar(50) NOT NULL,
 	abusecategory int NOT NULL,
